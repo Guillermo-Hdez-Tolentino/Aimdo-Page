@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AimDo - Tasks & Goals by Senvionix</title>
+    <style>
+        :root { --primary: #aa156e; --dark: #1a202c; --light: #f7fafc; --white: #ffffff; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: var(--dark); background: var(--light); line-height: 1.6; }
+        
+/* --- Modern Navigation Bar Styling --- */
+nav { 
+    background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque moderno */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.7rem 8%; /* Aumentamos padding lateral para pantallas grandes */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; /* Aseguramos que esté sobre todo */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03); /* Sombra muy sutil */
+    border-bottom: 1px solid rgba(170, 21, 110, 0.05); /* Línea inferior sutil */
+}
+
+/* Contenedor del Logo y Nombre */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espacio entre logo y texto */
+    text-decoration: none; /* Por si todo el contenedor fuera un link */
+}
+
+/* Estilo para la imagen del logo real */
+.nav-logo {
+    height: 38px; /* Altura optimizada */
+    width: auto;
+    border-radius: 10px; /* Bordes suaves si el logo es cuadrado */
+}
+
+/* Fallback: Estilo para cuando NO hay imagen de logo */
+.logo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    width: 38px;
+    background-color: var(--primary); /* Tu color #aa156e */
+    color: white;
+    font-weight: 800;
+    font-size: 1.2rem;
+    border-radius: 12px; /* Cuadrado con bordes muy redondeados */
+    box-shadow: 0 4px 10px rgba(170, 21, 110, 0.2);
+}
+
+/* Estilo del Nombre de Desarrollador */
+.dev-name { 
+    font-weight: 800; /* Extra bold */
+    color: var(--primary); /* Tu color #aa156e */
+    font-size: 1.4rem; 
+    letter-spacing: -1px; /* Letras más juntas para look de logo */
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+/* Estilo de los enlaces de navegación */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none; 
+    color: var(--dark); 
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    padding: 5px 0;
+    position: relative;
+}
+
+/* Efecto de línea inferior al hover */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Ajuste responsivo para el padding lateral */
+@media (max-width: 768px) {
+    nav { padding: 0.7rem 5%; }
+    .dev-name { font-size: 1.2rem; }
+    .nav-links { gap: 15px; }
+}
+
+        /* Hero Section */
+        header { padding: 80px 5%; text-align: center; background: white; }
+        .hero-content h1 { font-size: 3rem; color: var(--dark); margin-bottom: 1rem; }
+        .hero-content p { font-size: 1.2rem; color: #4a5568; max-width: 600px; margin: 0 auto 2rem; }
+        .btn-download { background: var(--primary); color: white; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; transition: transform 0.2s; }
+        .btn-download:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(170, 21, 110, 0.2); }
+
+        /* Features */
+        .features { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .feat-card { background: white; padding: 30px; border-radius: 20px; text-align: center; border: 1px solid #edf2f7; }
+        .feat-card h3 { color: var(--primary); margin-bottom: 10px; }
+
+        /* App Showcase (Screenshots) */
+/* App Showcase (Screenshots) */
+.showcase { 
+    padding: 60px 5%; 
+    background: #fff1f8; 
+    text-align: center; 
+    overflow: hidden; /* Evita desbordamientos raros */
+}
+
+.screens-grid { 
+    display: flex; 
+    gap: 20px; 
+    overflow-x: auto; 
+    padding: 30px 20px; /* Padding lateral para que las sombras no se corten */
+    justify-content: flex-start; /* CAMBIO CLAVE: Evita que la primera imagen se corte */
+    scroll-snap-type: x mandatory; /* Efecto de imán al hacer scroll */
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+}
+
+/* Opcional: Ocultar la barra de scroll pero mantener funcionalidad */
+.screens-grid::-webkit-scrollbar {
+    height: 8px;
+}
+.screens-grid::-webkit-scrollbar-thumb {
+    background: #aa156e44;
+    border-radius: 10px;
+}
+
+.screen-img { 
+    flex: 0 0 auto; /* Evita que las imágenes se encojan */
+    width: 280px; /* Un poco más grandes para mejor visibilidad */
+    border-radius: 25px; 
+    border: 6px solid white; 
+    box-shadow: 0 15px 35px rgba(170, 21, 110, 0.15); 
+    scroll-snap-align: center; /* Se alinea al centro al hacer scroll */
+    transition: transform 0.3s ease;
+}
+
+.screen-img:hover {
+    transform: scale(1.02);
+}
+
+/* Estilo para el botón próximamente que faltaba en tu código */
+.btn-coming-soon {
+    display: inline-block;
+    background: #fdf2f8;
+    color: var(--primary);
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-weight: 700;
+    border: 2px dashed var(--primary);
+    cursor: default;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+    </style>
+</head>
+<body>
+<nav>
+    <a href="#" class="logo-container">
+        <img src="logo.png" alt="Senvionix Logo" class="nav-logo" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';">
+        
+        <div id="logo-fallback" class="logo-placeholder" style="display: none;">
+            S
+        </div>
+
+        <span class="dev-name">AimDo</span>
+    </a>
+    <div class="nav-links">
+        <a href="#features">Features</a>
+        </div>
+</nav>
+
+    <header>
+<div class="hero-content">
+    <h1>Master Your Goals with AimDo</h1>
+    <p>The ultimate task management app designed by <strong>Senvionix</strong>. Stay organized, focused, and achieve your objectives.</p>
+    
+    <div class="btn-coming-soon">Coming Soon to Play Store</div>
+    
+    <p style="margin-top: 20px; font-size: 0.9rem; color: #a0aec0;">
+        Currently in final testing phase.
+    </p>
+</div>
+</header>
+
+    <section class="features" id="features">
+        <div class="feat-card">
+            <h3>Task Management</h3>
+            <p>Create and organize your daily tasks in a clean, Material 3 inspired interface.</p>
+        </div>
+        <div class="feat-card">
+            <h3>Goal Tracking</h3>
+            <p>Set long-term objectives and track your progress step by step.</p>
+        </div>
+        <div class="feat-card">
+            <h3>Cloud Cloud</h3>
+            <p>Your data is always safe in Cloud.</p>
+        </div>
+    </section>
+
+    <section class="showcase">
+        <h2>Modern UI / Powerful Features</h2>
+        <div class="screens-grid">
+            <img src="image-1.jpeg" alt="AimDo Screen" class="screen-img">
+            <img src="image-2.jpeg" alt="AimDo Screen" class="screen-img">
+            <img src="image-3.jpeg" alt="AimDo Screen" class="screen-img">
+            <img src="image-4.jpeg" alt="AimDo Screen" class="screen-img">
+            <img src="image-5.jpeg" alt="AimDo Screen" class="screen-img">
+            <img src="image-6.jpeg" alt="AimDo Screen" class="screen-img">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Senvionix. Developed by Guillermo Hernández.</p>
+        <div style="margin-top: 15px;">
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms & Conditions</a>
+        </div>
+    </footer>
+</body>
+</html>
